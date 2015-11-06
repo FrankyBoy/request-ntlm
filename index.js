@@ -5,12 +5,17 @@ var KeepAlive = require('agentkeepalive');
 var _ = require('lodash');
 
 var makeRequest = function(method, options, params, callback) {
-  
+
   if (options.url.toLowerCase().indexOf('https://') === 0) {
     KeepAlive = KeepAlive.HttpsAgent;
   }
 
-  var keepaliveAgent = new KeepAlive();
+  var keepaliveAgent = new KeepAlive({
+    maxSockets: 10,
+    maxFreeSockets: 10,
+    keepAlive: true,
+    keepAliveMsecs: 30000 // keepalive for 30 seconds
+  });
 
   if (!options.workstation) options.workstation = '';
   if (!options.ntlm_domain) options.ntlm_domain = '';
