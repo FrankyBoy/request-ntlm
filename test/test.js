@@ -10,6 +10,8 @@ describe('request-ntlm-continued', function(){
                 should.not.exist(err);
                 should.exist(res);
                 should.exist(body);
+                should.not.exist(options.headers.connection);
+                should.not.exist(options.headers.authorization);
                 callback();
             });
         }
@@ -51,6 +53,13 @@ describe('request-ntlm-continued', function(){
                 should.exist(err);
                 done();
             });
+        });
+
+        it('removes lowercase connection and authorization from options.header', function(done){
+            options.headers = {};
+            options.headers.connection = "close";
+            options.headers.authorization = "some auth";
+            simpleGetRequest(options)(done);
         });
     });
 });

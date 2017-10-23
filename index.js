@@ -22,6 +22,8 @@ var makeRequest = function(method, options, params, callback, pipeTarget) {
   function startAuth($) {
     var type1msg = ntlm.createType1Message(options);
     options.method = method;
+    delete options.headers.connection;
+    delete options.headers.authorization;
     _.extend(options.headers, {
       'Connection': 'keep-alive',
       'Authorization': type1msg
