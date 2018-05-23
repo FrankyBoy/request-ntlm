@@ -1,1 +1,5 @@
 node_modules
+.idea
+coverage
+test
+package-lock.json

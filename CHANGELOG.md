@@ -1,3 +1,11 @@
+# 0.2.1
+
+* Restrict passing "domain" option to avoid problems with request later
+
+# 0.2.0
+
+* Remove extra deps, refactor, add better tests
+
 # 0.1.5
 
 * Add support for PATCH verb. 
