@@ -1,17 +1,21 @@
-# Request-NTLM
+# Request-NTLM-Light
+
+[![Build Status](https://travis-ci.org/jehy/request-ntlm-light.svg?branch=master)](https://travis-ci.org/jehy/request-ntlm-light)
+[![dependencies Status](https://david-dm.org/jehy/request-ntlm-light/status.svg)](https://david-dm.org/jehy/request-ntlm-light)
+[![devDependencies Status](https://david-dm.org/jehy/request-ntlm-light/dev-status.svg)](https://david-dm.org/jehy/request-ntlm-light?type=dev)
 
 Module for authenticating with NTLM; An ntlm authentication wrapper for the Request module.
 
 ## Install with NPM
 
 ```
-$ npm install --save-dev request-ntlm-continued
+$ npm install --save-dev request-ntlm-light
 ```
 
 ## Usage
 
 ```javascript
-var ntlm = require('request-ntlm-continued');
+var ntlm = require('request-ntlm-light');
 
 var opts = {
   username: 'username',
@@ -34,12 +38,7 @@ Requests can also be streamed:
 ntlm.get(opts, json, null, fs.createWriteStream('example.pdf'));
 ```
 
-## Changes from original:
+## Changes from original ([request-ntlm-continued](https://www.npmjs.com/package/request-ntlm-continued)):
 
-* don't assume the post body is an object and should be made into json
-* options.domain is in use by request. Use ntlm_domain instead
-* ability to set custom headers
-* ability to use http and not only https
-* gracefully complete the request if the server doesn't actually require NTLM.
-  Fail only if `options.ntlm.strict` is set to `true` (default=`false`).
-* implement streaming
+* Less dependencies
+* Refactor
