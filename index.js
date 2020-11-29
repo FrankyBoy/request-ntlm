@@ -37,7 +37,14 @@ var makeRequest = function(method, options, params, callback, pipeTarget) {
           : $(null, res, body);
     }
 
-    var type2msg = ntlm.parseType2Message(res.headers['www-authenticate']);
+    var type2msg;
+    try {
+      type2msg = ntlm.parseType2Message(res.headers['www-authenticate']);
+    }
+    catch (ex) {
+      return $(ex);
+    }
+
     var type3msg = ntlm.createType3Message(type2msg, options);
     options.method = method;
     _.extend(options.headers, {
